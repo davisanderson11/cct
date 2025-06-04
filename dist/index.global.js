@@ -51,9 +51,9 @@ var jsPsychTimelineColumbiaCardTask = (function (exports) {
     mod
   ));
 
-  // node_modules/auto-bind/index.js
+  // ../../node_modules/auto-bind/index.js
   var require_auto_bind = __commonJS({
-    "node_modules/auto-bind/index.js"(exports, module) {
+    "../../node_modules/auto-bind/index.js"(exports, module) {
       var getAllProperties = (object) => {
         const properties = /* @__PURE__ */ new Set();
         do {
@@ -88,9 +88,9 @@ var jsPsychTimelineColumbiaCardTask = (function (exports) {
     }
   });
 
-  // node_modules/seedrandom/lib/alea.js
+  // ../../node_modules/seedrandom/lib/alea.js
   var require_alea = __commonJS({
-    "node_modules/seedrandom/lib/alea.js"(exports, module) {
+    "../../node_modules/seedrandom/lib/alea.js"(exports, module) {
       (function(global, module2, define2) {
         function Alea(seed) {
           var me = this, mash = Mash();
@@ -180,9 +180,9 @@ var jsPsychTimelineColumbiaCardTask = (function (exports) {
     }
   });
 
-  // node_modules/seedrandom/lib/xor128.js
+  // ../../node_modules/seedrandom/lib/xor128.js
   var require_xor128 = __commonJS({
-    "node_modules/seedrandom/lib/xor128.js"(exports, module) {
+    "../../node_modules/seedrandom/lib/xor128.js"(exports, module) {
       (function(global, module2, define2) {
         function XorGen(seed) {
           var me = this, strseed = "";
@@ -254,9 +254,9 @@ var jsPsychTimelineColumbiaCardTask = (function (exports) {
     }
   });
 
-  // node_modules/seedrandom/lib/xorwow.js
+  // ../../node_modules/seedrandom/lib/xorwow.js
   var require_xorwow = __commonJS({
-    "node_modules/seedrandom/lib/xorwow.js"(exports, module) {
+    "../../node_modules/seedrandom/lib/xorwow.js"(exports, module) {
       (function(global, module2, define2) {
         function XorGen(seed) {
           var me = this, strseed = "";
@@ -335,9 +335,9 @@ var jsPsychTimelineColumbiaCardTask = (function (exports) {
     }
   });
 
-  // node_modules/seedrandom/lib/xorshift7.js
+  // ../../node_modules/seedrandom/lib/xorshift7.js
   var require_xorshift7 = __commonJS({
-    "node_modules/seedrandom/lib/xorshift7.js"(exports, module) {
+    "../../node_modules/seedrandom/lib/xorshift7.js"(exports, module) {
       (function(global, module2, define2) {
         function XorGen(seed) {
           var me = this;
@@ -432,9 +432,9 @@ var jsPsychTimelineColumbiaCardTask = (function (exports) {
     }
   });
 
-  // node_modules/seedrandom/lib/xor4096.js
+  // ../../node_modules/seedrandom/lib/xor4096.js
   var require_xor4096 = __commonJS({
-    "node_modules/seedrandom/lib/xor4096.js"(exports, module) {
+    "../../node_modules/seedrandom/lib/xor4096.js"(exports, module) {
       (function(global, module2, define2) {
         function XorGen(seed) {
           var me = this;
@@ -544,9 +544,9 @@ var jsPsychTimelineColumbiaCardTask = (function (exports) {
     }
   });
 
-  // node_modules/seedrandom/lib/tychei.js
+  // ../../node_modules/seedrandom/lib/tychei.js
   var require_tychei = __commonJS({
-    "node_modules/seedrandom/lib/tychei.js"(exports, module) {
+    "../../node_modules/seedrandom/lib/tychei.js"(exports, module) {
       (function(global, module2, define2) {
         function XorGen(seed) {
           var me = this, strseed = "";
@@ -623,9 +623,9 @@ var jsPsychTimelineColumbiaCardTask = (function (exports) {
     }
   });
 
-  // node_modules/seedrandom/seedrandom.js
+  // ../../node_modules/seedrandom/seedrandom.js
   var require_seedrandom = __commonJS({
-    "node_modules/seedrandom/seedrandom.js"(exports, module) {
+    "../../node_modules/seedrandom/seedrandom.js"(exports, module) {
       (function(global, pool, math) {
         var width = 256, chunks = 6, digits = 52, rngname = "random", startdenom = math.pow(width, chunks), significance = math.pow(2, digits), overflow = significance * 2, mask = width - 1, nodecrypto;
         function seedrandom2(seed, options, callback) {
@@ -771,9 +771,9 @@ var jsPsychTimelineColumbiaCardTask = (function (exports) {
     }
   });
 
-  // node_modules/seedrandom/index.js
+  // ../../node_modules/seedrandom/index.js
   var require_seedrandom2 = __commonJS({
-    "node_modules/seedrandom/index.js"(exports, module) {
+    "../../node_modules/seedrandom/index.js"(exports, module) {
       var alea = require_alea();
       var xor128 = require_xor128();
       var xorwow = require_xorwow();
@@ -791,9 +791,9 @@ var jsPsychTimelineColumbiaCardTask = (function (exports) {
     }
   });
 
-  // node_modules/random-words/index.js
+  // ../../node_modules/random-words/index.js
   var require_random_words = __commonJS({
-    "node_modules/random-words/index.js"(exports, module) {
+    "../../node_modules/random-words/index.js"(exports, module) {
       var seedrandom2 = require_seedrandom2();
       var wordList = [
         // Borrowed from xkcd password generator which borrowed it from wherever
@@ -2823,7 +2823,7 @@ var jsPsychTimelineColumbiaCardTask = (function (exports) {
     }
   });
 
-  // node_modules/jspsych/dist/index.js
+  // ../../node_modules/jspsych/dist/index.js
   __toESM(require_auto_bind(), 1);
   __toESM(require_random_words(), 1);
   __toESM(require_alea(), 1);
@@ -2887,7 +2887,7 @@ var jsPsychTimelineColumbiaCardTask = (function (exports) {
     window.AudioContext = webkitAudioContext;
   }
 
-  // node_modules/@jspsych/plugin-html-keyboard-response/dist/index.js
+  // ../../node_modules/@jspsych/plugin-html-keyboard-response/dist/index.js
   var version = "2.1.0";
   var info = {
     name: "html-keyboard-response",
@@ -3065,11 +3065,229 @@ var jsPsychTimelineColumbiaCardTask = (function (exports) {
     _HtmlKeyboardResponsePlugin.info = info;
   })();
 
-  // node_modules/@jspsych/plugin-instructions/dist/index.js
+  // ../../node_modules/@jspsych/plugin-html-button-response/dist/index.js
   var version2 = "2.1.0";
   var info2 = {
-    name: "instructions",
+    name: "html-button-response",
     version: version2,
+    parameters: {
+      /** The HTML content to be displayed. */
+      stimulus: {
+        type: ParameterType.HTML_STRING,
+        default: void 0
+      },
+      /** Labels for the buttons. Each different string in the array will generate a different button. */
+      choices: {
+        type: ParameterType.STRING,
+        default: void 0,
+        array: true
+      },
+      /**
+       * A function that generates the HTML for each button in the `choices` array. The function gets the string and index of the item in the `choices` array and should return valid HTML. If you want to use different markup for each button, you can do that by using a conditional on either parameter. The default parameter returns a button element with the text label of the choice.
+       */
+      button_html: {
+        type: ParameterType.FUNCTION,
+        default: function(choice, choice_index) {
+          return `<button class="jspsych-btn">${choice}</button>`;
+        }
+      },
+      /** This string can contain HTML markup. Any content here will be displayed below the stimulus. The intention is that it can be used to provide a reminder about the action the participant is supposed to take (e.g., which key to press). */
+      prompt: {
+        type: ParameterType.HTML_STRING,
+        default: null
+      },
+      /** How long to display the stimulus in milliseconds. The visibility CSS property of the stimulus will be set to `hidden` after this time has elapsed. If this is null, then the stimulus will remain visible until the trial ends. */
+      stimulus_duration: {
+        type: ParameterType.INT,
+        default: null
+      },
+      /** ow long to wait for the participant to make a response before ending the trial in milliseconds. If the participant fails to make a response before this timer is reached, the participant's response will be recorded as null for the trial and the trial will end. If the value of this parameter is null, the trial will wait for a response indefinitely.  */
+      trial_duration: {
+        type: ParameterType.INT,
+        default: null
+      },
+      /** Setting to `'grid'` will make the container element have the CSS property `display: grid` and enable the use of `grid_rows` and `grid_columns`. Setting to `'flex'` will make the container element have the CSS property `display: flex`. You can customize how the buttons are laid out by adding inline CSS in the `button_html` parameter. */
+      button_layout: {
+        type: ParameterType.STRING,
+        default: "grid"
+      },
+      /**
+       * The number of rows in the button grid. Only applicable when `button_layout` is set to `'grid'`. If null, the number of rows will be determined automatically based on the number of buttons and the number of columns.
+       */
+      grid_rows: {
+        type: ParameterType.INT,
+        default: 1
+      },
+      /**
+       * The number of columns in the button grid. Only applicable when `button_layout` is set to `'grid'`. If null, the number of columns will be determined automatically based on the number of buttons and the number of rows.
+       */
+      grid_columns: {
+        type: ParameterType.INT,
+        default: null
+      },
+      /** If true, then the trial will end whenever the participant makes a response (assuming they make their response before the cutoff specified by the `trial_duration` parameter). If false, then the trial will continue until the value for `trial_duration` is reached. You can set this parameter to `false` to force the participant to view a stimulus for a fixed amount of time, even if they respond before the time is complete. */
+      response_ends_trial: {
+        type: ParameterType.BOOL,
+        default: true
+      },
+      /** How long the button will delay enabling in milliseconds. */
+      enable_button_after: {
+        type: ParameterType.INT,
+        default: 0
+      }
+    },
+    data: {
+      /** The response time in milliseconds for the participant to make a response. The time is measured from when the stimulus first appears on the screen until the participant's response. */
+      rt: {
+        type: ParameterType.INT
+      },
+      /** Indicates which button the participant pressed. The first button in the `choices` array is 0, the second is 1, and so on. */
+      response: {
+        type: ParameterType.INT
+      },
+      /** The HTML content that was displayed on the screen. */
+      stimulus: {
+        type: ParameterType.HTML_STRING
+      }
+    },
+    // prettier-ignore
+    citations: {
+      "apa": "de Leeuw, J. R., Gilbert, R. A., & Luchterhandt, B. (2023). jsPsych: Enabling an Open-Source Collaborative Ecosystem of Behavioral Experiments. Journal of Open Source Software, 8(85), 5351. https://doi.org/10.21105/joss.05351 ",
+      "bibtex": '@article{Leeuw2023jsPsych, 	author = {de Leeuw, Joshua R. and Gilbert, Rebecca A. and Luchterhandt, Bj{\\" o}rn}, 	journal = {Journal of Open Source Software}, 	doi = {10.21105/joss.05351}, 	issn = {2475-9066}, 	number = {85}, 	year = {2023}, 	month = {may 11}, 	pages = {5351}, 	publisher = {Open Journals}, 	title = {jsPsych: Enabling an {Open}-{Source} {Collaborative} {Ecosystem} of {Behavioral} {Experiments}}, 	url = {https://joss.theoj.org/papers/10.21105/joss.05351}, 	volume = {8}, }  '
+    }
+  };
+  var _HtmlButtonResponsePlugin = class {
+    constructor(jsPsych) {
+      this.jsPsych = jsPsych;
+    }
+    trial(display_element, trial) {
+      const stimulusElement = document.createElement("div");
+      stimulusElement.id = "jspsych-html-button-response-stimulus";
+      stimulusElement.innerHTML = trial.stimulus;
+      display_element.appendChild(stimulusElement);
+      const buttonGroupElement = document.createElement("div");
+      buttonGroupElement.id = "jspsych-html-button-response-btngroup";
+      if (trial.button_layout === "grid") {
+        buttonGroupElement.classList.add("jspsych-btn-group-grid");
+        if (trial.grid_rows === null && trial.grid_columns === null) {
+          throw new Error(
+            "You cannot set `grid_rows` to `null` without providing a value for `grid_columns`."
+          );
+        }
+        const n_cols = trial.grid_columns === null ? Math.ceil(trial.choices.length / trial.grid_rows) : trial.grid_columns;
+        const n_rows = trial.grid_rows === null ? Math.ceil(trial.choices.length / trial.grid_columns) : trial.grid_rows;
+        buttonGroupElement.style.gridTemplateColumns = `repeat(${n_cols}, 1fr)`;
+        buttonGroupElement.style.gridTemplateRows = `repeat(${n_rows}, 1fr)`;
+      } else if (trial.button_layout === "flex") {
+        buttonGroupElement.classList.add("jspsych-btn-group-flex");
+      }
+      for (const [choiceIndex, choice] of trial.choices.entries()) {
+        buttonGroupElement.insertAdjacentHTML("beforeend", trial.button_html(choice, choiceIndex));
+        const buttonElement = buttonGroupElement.lastChild;
+        buttonElement.dataset.choice = choiceIndex.toString();
+        buttonElement.addEventListener("click", () => {
+          after_response(choiceIndex);
+        });
+      }
+      display_element.appendChild(buttonGroupElement);
+      if (trial.prompt !== null) {
+        display_element.insertAdjacentHTML("beforeend", trial.prompt);
+      }
+      var start_time = performance.now();
+      var response = {
+        rt: null,
+        button: null
+      };
+      const end_trial = () => {
+        var trial_data = {
+          rt: response.rt,
+          stimulus: trial.stimulus,
+          response: response.button
+        };
+        this.jsPsych.finishTrial(trial_data);
+      };
+      function after_response(choice) {
+        var end_time = performance.now();
+        var rt = Math.round(end_time - start_time);
+        response.button = parseInt(choice);
+        response.rt = rt;
+        stimulusElement.classList.add("responded");
+        for (const button of buttonGroupElement.children) {
+          button.setAttribute("disabled", "disabled");
+        }
+        if (trial.response_ends_trial) {
+          end_trial();
+        }
+      }
+      if (trial.stimulus_duration !== null) {
+        this.jsPsych.pluginAPI.setTimeout(() => {
+          stimulusElement.style.visibility = "hidden";
+        }, trial.stimulus_duration);
+      }
+      if (trial.enable_button_after > 0) {
+        var btns = document.querySelectorAll("#jspsych-html-button-response-btngroup button");
+        for (var i = 0; i < btns.length; i++) {
+          btns[i].setAttribute("disabled", "disabled");
+        }
+        this.jsPsych.pluginAPI.setTimeout(() => {
+          var btns2 = document.querySelectorAll("#jspsych-html-button-response-btngroup button");
+          for (var i2 = 0; i2 < btns2.length; i2++) {
+            btns2[i2].removeAttribute("disabled");
+          }
+        }, trial.enable_button_after);
+      }
+      if (trial.trial_duration !== null) {
+        this.jsPsych.pluginAPI.setTimeout(end_trial, trial.trial_duration);
+      }
+    }
+    simulate(trial, simulation_mode, simulation_options, load_callback) {
+      if (simulation_mode == "data-only") {
+        load_callback();
+        this.simulate_data_only(trial, simulation_options);
+      }
+      if (simulation_mode == "visual") {
+        this.simulate_visual(trial, simulation_options, load_callback);
+      }
+    }
+    create_simulation_data(trial, simulation_options) {
+      const default_data = {
+        stimulus: trial.stimulus,
+        rt: this.jsPsych.randomization.sampleExGaussian(500, 50, 1 / 150, true) + trial.enable_button_after,
+        response: this.jsPsych.randomization.randomInt(0, trial.choices.length - 1)
+      };
+      const data = this.jsPsych.pluginAPI.mergeSimulationData(default_data, simulation_options);
+      this.jsPsych.pluginAPI.ensureSimulationDataConsistency(trial, data);
+      return data;
+    }
+    simulate_data_only(trial, simulation_options) {
+      const data = this.create_simulation_data(trial, simulation_options);
+      this.jsPsych.finishTrial(data);
+    }
+    simulate_visual(trial, simulation_options, load_callback) {
+      const data = this.create_simulation_data(trial, simulation_options);
+      const display_element = this.jsPsych.getDisplayElement();
+      this.trial(display_element, trial);
+      load_callback();
+      if (data.rt !== null) {
+        this.jsPsych.pluginAPI.clickTarget(
+          display_element.querySelector(
+            `#jspsych-html-button-response-btngroup [data-choice="${data.response}"]`
+          ),
+          data.rt
+        );
+      }
+    }
+  };
+  var HtmlButtonResponsePlugin = _HtmlButtonResponsePlugin;
+  (() => {
+    _HtmlButtonResponsePlugin.info = info2;
+  })();
+
+  // ../../node_modules/@jspsych/plugin-instructions/dist/index.js
+  var version3 = "2.1.0";
+  var info3 = {
+    name: "instructions",
+    version: version3,
     parameters: {
       /** Each element of the array is the content for a single page. Each page should be an HTML-formatted string.  */
       pages: {
@@ -3399,7 +3617,7 @@ var jsPsychTimelineColumbiaCardTask = (function (exports) {
   };
   var InstructionsPlugin = _InstructionsPlugin;
   (() => {
-    _InstructionsPlugin.info = info2;
+    _InstructionsPlugin.info = info3;
   })();
 
   // src/index.ts
@@ -3420,23 +3638,6 @@ var jsPsychTimelineColumbiaCardTask = (function (exports) {
     roundData: null,
     roundsCompleted: 0
   };
-  var TASK_STYLES = `
-    <style>
-        body { font-family: Arial, sans-serif; background-color: #f0f0f0; margin: 0; padding: 20px; }
-        .card-grid { display: grid; gap: 10px; max-width: 600px; margin: 20px auto; }
-        .card { width: 80px; height: 120px; border: 2px solid #333; border-radius: 8px; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 24px; font-weight: bold; transition: all 0.3s ease; }
-        .card-back { background: linear-gradient(45deg, #4169E1, #6495ED); color: white; }
-        .card-back:hover { background: linear-gradient(45deg, #1E3A8A, #3B82F6); transform: scale(1.05); }
-        .card-gain { background: linear-gradient(45deg, #22C55E, #16A34A); color: white; }
-        .card-loss { background: linear-gradient(45deg, #EF4444, #DC2626); color: white; }
-        .game-info { text-align: center; margin: 20px 0; font-size: 18px; }
-        .round-info { background: white; padding: 15px; border-radius: 8px; margin: 10px auto; max-width: 500px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
-        .button-container { text-align: center; margin: 20px 0; }
-        .stop-button { background-color: #EF4444; color: white; border: none; padding: 12px 24px; font-size: 16px; border-radius: 6px; cursor: pointer; margin: 10px; }
-        .stop-button:hover { background-color: #DC2626; }
-        .score-display { font-size: 24px; font-weight: bold; color: #1E3A8A; }
-    </style>
-`;
   function resetState() {
     state = {
       totalScore: 0,
@@ -3533,8 +3734,7 @@ var jsPsychTimelineColumbiaCardTask = (function (exports) {
     const instructions = {
       type: InstructionsPlugin,
       pages: [
-        `${TASK_STYLES}
-            <h1>Columbia Card Task</h1>
+        `<h1>Columbia Card Task</h1>
             <p>Select cards to earn points. Most cards give you points, but some lose points and end the round.</p>
             <p>You can stop anytime to keep your points, or keep selecting for more.</p>`,
         `<h2>Strategy</h2>
@@ -3548,19 +3748,17 @@ var jsPsychTimelineColumbiaCardTask = (function (exports) {
   }
   function createRoundInfo(roundNum, totalRounds, roundConfig) {
     const roundInfo = {
-      type: HtmlKeyboardResponsePlugin,
+      type: HtmlButtonResponsePlugin,
       stimulus: () => {
-        return `${TASK_STYLES}
-                <div class="round-info">
-                    <h2>Round ${roundNum} of ${totalRounds}</h2>
-                    <p>Loss cards: <b style="color:#EF4444">${roundConfig.lossCards}</b></p>
-                    <p>Loss penalty: <b style="color:#EF4444">-${roundConfig.lossAmount}</b></p>
-                    <p>Gain per card: <b style="color:#22C55E">+${roundConfig.gainAmount}</b></p>
-                    <p>Total score: <span class="score-display">${state.totalScore}</span></p>
-                    <p>Press SPACE to start</p>
-                </div>`;
+        return `<div class="round-info">
+                <h2>Round ${roundNum} of ${totalRounds}</h2>
+                <p>Loss cards: <b style="color:#EF4444">${roundConfig.lossCards}</b></p>
+                <p>Loss penalty: <b style="color:#EF4444">-${roundConfig.lossAmount}</b></p>
+                <p>Gain per card: <b style="color:#22C55E">+${roundConfig.gainAmount}</b></p>
+                <p>Total score: <span class="score-display">${state.totalScore}</span></p>
+            </div>`;
       },
-      choices: [" "]
+      choices: ["Start"]
     };
     return roundInfo;
   }
@@ -3572,8 +3770,7 @@ var jsPsychTimelineColumbiaCardTask = (function (exports) {
           { length: numCards },
           (_, i) => `<div class="card card-back" id="card-${i}">?</div>`
         ).join("");
-        return `${TASK_STYLES}
-                <style>.card-grid { grid-template-columns: repeat(${gridCols}, 1fr) !important; }</style>
+        return `<style>.card-grid { grid-template-columns: repeat(${gridCols}, 1fr) !important; }</style>
                 <div class="game-info">
                     <h3>Round ${roundNum}</h3>
                     <p>Score: <span id="round-score">0</span> | Total: ${state.totalScore}</p>
@@ -3595,7 +3792,7 @@ var jsPsychTimelineColumbiaCardTask = (function (exports) {
   }
   function createResults(jsPsych) {
     const results = {
-      type: HtmlKeyboardResponsePlugin,
+      type: HtmlButtonResponsePlugin,
       stimulus: function() {
         const data = jsPsych.data.get().filter({ task: "round_complete" });
         const avgCards = data.count() > 0 ? data.select("cards_selected").mean() : 0;
@@ -3604,15 +3801,13 @@ var jsPsychTimelineColumbiaCardTask = (function (exports) {
           const scores = data.select("total_score").values;
           finalScore = scores[scores.length - 1];
         }
-        return `${TASK_STYLES}
-                <div class="round-info">
-                    <h2>Task Complete!</h2>
-                    <p>Final Score: <span class="score-display">${finalScore}</span></p>
-                    <p>Average cards selected: ${avgCards.toFixed(1)}</p>
-                    <p>Press SPACE to continue</p>
-                </div>`;
+        return `<div class="round-info">
+                <h2>Task Complete!</h2>
+                <p>Final Score: <span class="score-display">${finalScore}</span></p>
+                <p>Average cards selected: ${avgCards.toFixed(1)}</p>
+            </div>`;
       },
-      choices: [" "]
+      choices: ["Continue"]
     };
     return results;
   }

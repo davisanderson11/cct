@@ -1,5 +1,6 @@
 import { JsPsych } from 'jspsych';
 import jsPsychHtmlKeyboardResponse from '@jspsych/plugin-html-keyboard-response';
+import jsPsychHtmlButtonResponse from '@jspsych/plugin-html-button-response';
 import jsPsychInstructions from '@jspsych/plugin-instructions';
 
 interface RoundConfig {
@@ -31,7 +32,7 @@ declare function createInstructions(): {
     show_clickable_nav: boolean;
 };
 declare function createRoundInfo(roundNum: number, totalRounds: number, roundConfig: RoundConfig): {
-    type: typeof jsPsychHtmlKeyboardResponse;
+    type: typeof jsPsychHtmlButtonResponse;
     stimulus: () => string;
     choices: string[];
 };
@@ -42,7 +43,7 @@ declare function createCardGame(jsPsych: JsPsych, roundNum: number, roundConfig:
     on_load: () => void;
 };
 declare function createResults(jsPsych: JsPsych): {
-    type: typeof jsPsychHtmlKeyboardResponse;
+    type: typeof jsPsychHtmlButtonResponse;
     stimulus: () => string;
     choices: string[];
 };

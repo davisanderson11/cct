@@ -1,5 +1,6 @@
 import { JsPsych } from "jspsych";
 import jsPsychHtmlKeyboardResponse from '@jspsych/plugin-html-keyboard-response';
+import jsPsychHtmlButtonResponse from '@jspsych/plugin-html-button-response';
 import jsPsychInstructions from '@jspsych/plugin-instructions';
 
 /* Constants */
@@ -43,25 +44,6 @@ let state: GameState = {
     roundData: null,
     roundsCompleted: 0
 };
-
-/* Styles */
-const TASK_STYLES = `
-    <style>
-        body { font-family: Arial, sans-serif; background-color: #f0f0f0; margin: 0; padding: 20px; }
-        .card-grid { display: grid; gap: 10px; max-width: 600px; margin: 20px auto; }
-        .card { width: 80px; height: 120px; border: 2px solid #333; border-radius: 8px; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 24px; font-weight: bold; transition: all 0.3s ease; }
-        .card-back { background: linear-gradient(45deg, #4169E1, #6495ED); color: white; }
-        .card-back:hover { background: linear-gradient(45deg, #1E3A8A, #3B82F6); transform: scale(1.05); }
-        .card-gain { background: linear-gradient(45deg, #22C55E, #16A34A); color: white; }
-        .card-loss { background: linear-gradient(45deg, #EF4444, #DC2626); color: white; }
-        .game-info { text-align: center; margin: 20px 0; font-size: 18px; }
-        .round-info { background: white; padding: 15px; border-radius: 8px; margin: 10px auto; max-width: 500px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
-        .button-container { text-align: center; margin: 20px 0; }
-        .stop-button { background-color: #EF4444; color: white; border: none; padding: 12px 24px; font-size: 16px; border-radius: 6px; cursor: pointer; margin: 10px; }
-        .stop-button:hover { background-color: #DC2626; }
-        .score-display { font-size: 24px; font-weight: bold; color: #1E3A8A; }
-    </style>
-`;
 
 /* Internal functions */
 function resetState() {
@@ -173,8 +155,7 @@ function createInstructions() {
     const instructions = {
         type: jsPsychInstructions,
         pages: [
-            `${TASK_STYLES}
-            <h1>Columbia Card Task</h1>
+            `<h1>Columbia Card Task</h1>
             <p>Select cards to earn points. Most cards give you points, but some lose points and end the round.</p>
             <p>You can stop anytime to keep your points, or keep selecting for more.</p>`,
             `<h2>Strategy</h2>
@@ -190,19 +171,17 @@ function createInstructions() {
 
 function createRoundInfo(roundNum: number, totalRounds: number, roundConfig: RoundConfig) {
     const roundInfo = {
-        type: jsPsychHtmlKeyboardResponse,
+        type: jsPsychHtmlButtonResponse,
         stimulus: () => {
-            return `${TASK_STYLES}
-                <div class="round-info">
-                    <h2>Round ${roundNum} of ${totalRounds}</h2>
-                    <p>Loss cards: <b style="color:#EF4444">${roundConfig.lossCards}</b></p>
-                    <p>Loss penalty: <b style="color:#EF4444">-${roundConfig.lossAmount}</b></p>
-                    <p>Gain per card: <b style="color:#22C55E">+${roundConfig.gainAmount}</b></p>
-                    <p>Total score: <span class="score-display">${state.totalScore}</span></p>
-                    <p>Press SPACE to start</p>
-                </div>`;
+            return `<div class="round-info">
+                <h2>Round ${roundNum} of ${totalRounds}</h2>
+                <p>Loss cards: <b style="color:#EF4444">${roundConfig.lossCards}</b></p>
+                <p>Loss penalty: <b style="color:#EF4444">-${roundConfig.lossAmount}</b></p>
+                <p>Gain per card: <b style="color:#22C55E">+${roundConfig.gainAmount}</b></p>
+                <p>Total score: <span class="score-display">${state.totalScore}</span></p>
+            </div>`;
         },
-        choices: [' ']
+        choices: ['Start']
     };
     
     return roundInfo;
@@ -222,8 +201,7 @@ function createCardGame(
                 `<div class="card card-back" id="card-${i}">?</div>`
             ).join('');
             
-            return `${TASK_STYLES}
-                <style>.card-grid { grid-template-columns: repeat(${gridCols}, 1fr) !important; }</style>
+            return `<style>.card-grid { grid-template-columns: repeat(${gridCols}, 1fr) !important; }</style>
                 <div class="game-info">
                     <h3>Round ${roundNum}</h3>
                     <p>Score: <span id="round-score">0</span> | Total: ${state.totalScore}</p>
@@ -247,7 +225,7 @@ function createCardGame(
 
 function createResults(jsPsych: JsPsych) {
     const results = {
-        type: jsPsychHtmlKeyboardResponse,
+        type: jsPsychHtmlButtonResponse,
         stimulus: function() {
             const data = jsPsych.data.get().filter({task: 'round_complete'});
             const avgCards = data.count() > 0 ? data.select('cards_selected').mean() : 0;
@@ -258,15 +236,13 @@ function createResults(jsPsych: JsPsych) {
                 finalScore = scores[scores.length - 1];
             }
             
-            return `${TASK_STYLES}
-                <div class="round-info">
-                    <h2>Task Complete!</h2>
-                    <p>Final Score: <span class="score-display">${finalScore}</span></p>
-                    <p>Average cards selected: ${avgCards.toFixed(1)}</p>
-                    <p>Press SPACE to continue</p>
-                </div>`;
+            return `<div class="round-info">
+                <h2>Task Complete!</h2>
+                <p>Final Score: <span class="score-display">${finalScore}</span></p>
+                <p>Average cards selected: ${avgCards.toFixed(1)}</p>
+            </div>`;
         },
-        choices: [' ']
+        choices: ['Continue']
     };
     
     return results;

@@ -1,0 +1,251 @@
+/* Aggressive override of jsPsych default styles */
+.jspsych-display-element {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    min-height: 100vh !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    width: 100% !important;
+}
+
+.jspsych-content-wrapper {
+    width: 100% !important;
+    max-width: none !important;
+    height: 100vh !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 10px !important;
+    box-sizing: border-box !important;
+    margin: 0 !important;
+}
+
+.jspsych-content {
+    width: 100% !important;
+    max-width: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+}
+
+/* Remove any default margins on all jsPsych elements */
+[class*="jspsych-"] {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+}
+
+/* Base styles */
+body { 
+    font-family: Arial, sans-serif; 
+    background-color: #f0f0f0; 
+    margin: 0; 
+    padding: 0;
+    overflow-x: hidden;
+}
+
+/* Card grid responsive design */
+.card-grid { 
+    display: grid; 
+    gap: clamp(5px, 1.5vw, 12px);
+    width: 90vw;
+    max-width: 700px;
+    margin: 10px auto;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Card responsive sizing */
+.card { 
+    width: 100%;
+    aspect-ratio: 2/3;
+    min-height: 60px;
+    height: clamp(80px, 15vw, 130px);
+    border: 2px solid #333; 
+    border-radius: 8px; 
+    cursor: pointer; 
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+    font-size: clamp(16px, 4vw, 26px);
+    font-weight: bold; 
+    transition: all 0.3s ease;
+    box-sizing: border-box;
+}
+
+.card-back { 
+    background: linear-gradient(45deg, #4169E1, #6495ED); 
+    color: white; 
+}
+
+.card-back:hover { 
+    background: linear-gradient(45deg, #1E3A8A, #3B82F6); 
+    transform: scale(1.05); 
+}
+
+.card-gain { 
+    background: linear-gradient(45deg, #22C55E, #16A34A); 
+    color: white; 
+}
+
+.card-loss { 
+    background: linear-gradient(45deg, #EF4444, #DC2626); 
+    color: white; 
+}
+
+/* Game info responsive */
+.game-info { 
+    text-align: center; 
+    margin: clamp(5px, 1.5vh, 15px) 0;
+    font-size: clamp(14px, 3vw, 18px);
+    width: 100%;
+}
+
+.game-info h3 {
+    margin: 5px 0;
+    font-size: clamp(18px, 4vw, 24px);
+}
+
+/* Round info responsive */
+.round-info { 
+    background: white; 
+    padding: clamp(10px, 2.5vw, 20px);
+    border-radius: 8px; 
+    margin: 5px auto; 
+    width: 85vw;
+    max-width: 500px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    font-size: clamp(14px, 3vw, 18px);
+}
+
+.round-info h2 {
+    font-size: clamp(18px, 4vw, 26px);
+    margin: 5px 0;
+}
+
+.round-info p {
+    margin: 8px 0;
+}
+
+/* Button container */
+.button-container { 
+    text-align: center; 
+    margin: clamp(15px, 2vh, 25px) 0;
+    width: 100%;
+}
+
+/* Stop button responsive */
+.stop-button { 
+    background-color: #EF4444; 
+    color: white; 
+    border: none; 
+    padding: clamp(10px, 2vw, 15px) clamp(20px, 3vw, 30px);
+    font-size: clamp(14px, 2vw, 18px);
+    border-radius: 6px; 
+    cursor: pointer; 
+    margin: 10px;
+    transition: all 0.2s ease;
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.stop-button:hover { 
+    background-color: #DC2626; 
+    transform: scale(1.05);
+}
+
+.stop-button:active {
+    transform: scale(0.98);
+}
+
+/* Score display */
+.score-display { 
+    font-size: clamp(20px, 3vw, 28px);
+    font-weight: bold; 
+    color: #1E3A8A; 
+}
+
+/* Message area */
+#message {
+    font-size: clamp(16px, 2.5vw, 20px);
+    margin: 10px 0;
+    min-height: 30px;
+}
+
+/* Instructions pages */
+.jspsych-instructions-nav {
+    margin-top: 20px !important;
+}
+
+.jspsych-btn {
+    padding: 10px 20px !important;
+    font-size: clamp(14px, 2vw, 16px) !important;
+    margin: 0 10px !important;
+    background-color: #4169E1 !important;
+    color: white !important;
+    border: none !important;
+    border-radius: 6px !important;
+    cursor: pointer !important;
+    transition: all 0.2s ease !important;
+}
+
+.jspsych-btn:hover {
+    background-color: #1E3A8A !important;
+    transform: scale(1.05) !important;
+}
+
+/* Responsive grid columns */
+@media (max-width: 600px) {
+    .card-grid {
+        grid-template-columns: repeat(3, 1fr) !important;
+        gap: 8px;
+    }
+    
+    .card {
+        height: clamp(70px, 20vw, 100px);
+        font-size: clamp(14px, 4vw, 20px);
+    }
+}
+
+@media (max-width: 400px) {
+    .card-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+        width: 95vw;
+    }
+    
+    .card {
+        height: clamp(90px, 35vw, 120px);
+    }
+}
+
+@media (min-width: 768px) {
+    .card {
+        height: clamp(100px, 12vw, 130px);
+    }
+}
+
+/* Viewport meta tag enforcement */
+@viewport {
+    width: device-width;
+    initial-scale: 1;
+    maximum-scale: 1;
+    user-scalable: no;
+}
+
+/* Ensure clickable areas are large enough for mobile */
+@media (hover: none) and (pointer: coarse) {
+    .card, .stop-button, .jspsych-btn {
+        min-height: 44px;
+        min-width: 44px;
+    }
+}
+
+/* Prevent zoom on mobile */
+@media (max-width: 768px) {
+    html {
+        touch-action: manipulation;
+    }
+}
