@@ -7,7 +7,9 @@
     "types": "dist/index.d.ts",
     "unpkg": "dist/index.browser.min.js",
     "scripts": {
-        "build": "tsup src/index.ts --format esm,iife --sourcemap --dts --treeshake --clean --global-name jsPsychTimelineColumbiaCardTask"
+        "build": "tsup src/index.ts --format esm,iife --sourcemap --dts --treeshake --clean --global-name jsPsychTimelineColumbiaCardTask",
+        "test": "jest",
+        "test:watch": "jest --watch"
     },
     "repository": {
         "type": "git",
@@ -27,8 +29,13 @@
     },
     "homepage": "/columbia-card-task/README.md",
     "devDependencies": {
+        "@jest/globals": "^29.7.0",
         "@jspsych/config": "^3.2.2",
+        "@types/jest": "^29.5.5",
+        "jest": "^29.7.0",
+        "jest-environment-jsdom": "^29.7.0",
         "jspsych": "^8.0.0",
+        "ts-jest": "^29.1.1",
         "tsup": "^6.7.0",
         "typescript": "^5.0.2"
     },
