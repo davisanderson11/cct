@@ -121,7 +121,7 @@ describe('Columbia Card Task', () => {
 
       const timeline = createTimeline(mockJsPsych, {
         numCards: 20,
-        gridCols: 5,
+        cols: 5,
         rounds: customRounds,
         showInstructions: false,
         showResults: false

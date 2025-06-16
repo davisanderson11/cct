@@ -11,7 +11,7 @@ The Columbia Card Task is a risk-taking evaluation test using a grid of cards. O
 ## Compatibility
 
 `columbia-card-task` requires jsPsych v8.0.0 or later.
-
+    
 ## Documentation
 
 ### createTimeline
@@ -27,7 +27,6 @@ The following parameters can be specified in the **options** parameter.
 
 
 ### timelineUnits
-
 
 ### utils
 

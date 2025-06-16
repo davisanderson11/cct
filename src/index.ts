@@ -4,9 +4,9 @@ import jsPsychHtmlButtonResponse from '@jspsych/plugin-html-button-response';
 import jsPsychInstructions from '@jspsych/plugin-instructions';
 
 /* Constants */
-const DEFAULT_NUM_CARDS = 16;
-const DEFAULT_GRID_COLS = 4;
-const DEFAULT_ROUNDS = [
+const default_n_cards = 16;
+const default_cols = 4;
+const default_rounds = [
     { lossCards: 1, gainAmount: 10, lossAmount: 250 },
     { lossCards: 1, gainAmount: 10, lossAmount: 250 },
     { lossCards: 1, gainAmount: 10, lossAmount: 250 },
@@ -54,7 +54,7 @@ function resetState() {
     };
 }
 
-function setupRound(jsPsych: JsPsych, cfg: RoundConfig, roundNum: number, gridCols: number, numCards: number) {
+function setupRound(jsPsych: JsPsych, cfg: RoundConfig, roundNum: number, cols: number, numCards: number) {
     // Create card layout
     const lossPositions: number[] = [];
     while (lossPositions.length < cfg.lossCards) {
@@ -192,7 +192,7 @@ function createCardGame(
     roundNum: number, 
     roundConfig: RoundConfig, 
     numCards: number, 
-    gridCols: number
+    cols: number
 ) {
     const cardGame = {
         type: jsPsychHtmlKeyboardResponse,
@@ -201,7 +201,7 @@ function createCardGame(
                 `<div class="card card-back" id="card-${i}">?</div>`
             ).join('');
             
-            return `<style>.card-grid { grid-template-columns: repeat(${gridCols}, 1fr) !important; }</style>
+            return `<style>.card-grid { grid-template-columns: repeat(${cols}, 1fr) !important; }</style>
                 <div class="game-info">
                     <h3>Round ${roundNum}</h3>
                     <p>Score: <span id="round-score">0</span> | Total: ${state.totalScore}</p>
@@ -216,7 +216,7 @@ function createCardGame(
         },
         choices: "NO_KEYS",
         on_load: function() {
-            setupRound(jsPsych, roundConfig, roundNum, gridCols, numCards);
+            setupRound(jsPsych, roundConfig, roundNum, cols, numCards);
         }
     };
     
@@ -252,14 +252,14 @@ function createResults(jsPsych: JsPsych) {
 export function createTimeline(
     jsPsych: JsPsych,
     {
-        numCards = DEFAULT_NUM_CARDS,
-        gridCols = DEFAULT_GRID_COLS,
-        rounds = DEFAULT_ROUNDS,
+        numCards = default_n_cards,
+        cols = default_cols,
+        rounds = default_rounds,
         showInstructions = true,
         showResults = true
     }: {
         numCards?: number,
-        gridCols?: number,
+        cols?: number,
         rounds?: RoundConfig[],
         showInstructions?: boolean,
         showResults?: boolean
@@ -283,7 +283,7 @@ export function createTimeline(
         timeline.push(createRoundInfo(roundNum, rounds.length, roundConfig));
         
         // Card game
-        timeline.push(createCardGame(jsPsych, roundNum, roundConfig, numCards, gridCols));
+        timeline.push(createCardGame(jsPsych, roundNum, roundConfig, numCards, cols));
     });
     
     // Add results if requested
