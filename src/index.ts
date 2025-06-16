@@ -170,7 +170,7 @@ function createInstructions() {
 }
 
 function createRoundInfo(round_num: number, totalRounds: number, roundConfig: RoundConfig) {
-    const roundInfo = {
+    const round_info = {
         type: jsPsychHtmlButtonResponse,
         stimulus: () => {
             return `<div class="round-info">
@@ -184,7 +184,7 @@ function createRoundInfo(round_num: number, totalRounds: number, roundConfig: Ro
         choices: ['Start']
     };
     
-    return roundInfo;
+    return round_info;
 }
 
 function createCardGame(
