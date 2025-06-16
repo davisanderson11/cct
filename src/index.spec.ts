@@ -1,6 +1,6 @@
 import { jest } from '@jest/globals';
 import { JsPsych } from 'jspsych';
-import { createTimeline, timelineComponents, utils, RoundConfig, RoundData, GameState } from './index';
+import { createTimeline, timelineComponents, utils, RoundConfig, round_data, GameState } from './index';
 
 // Mock DOM methods
 Object.defineProperty(global, 'document', {
@@ -115,8 +115,8 @@ describe('Columbia Card Task', () => {
 
     test('should create timeline with custom parameters', () => {
       const customRounds: RoundConfig[] = [
-        { lossCards: 2, gainAmount: 15, lossAmount: 100 },
-        { lossCards: 3, gainAmount: 20, lossAmount: 200 }
+        { loss_cards: 2, gain_amount: 15, loss_amount: 100 },
+        { loss_cards: 3, gain_amount: 20, loss_amount: 200 }
       ];
 
       const timeline = createTimeline(mockJsPsych, {
@@ -176,7 +176,7 @@ describe('Columbia Card Task', () => {
 
     describe('createRoundInfo', () => {
       test('should create round info component', () => {
-        const roundConfig: RoundConfig = { lossCards: 1, gainAmount: 10, lossAmount: 250 };
+        const roundConfig: RoundConfig = { loss_cards: 1, gain_amount: 10, loss_amount: 250 };
         const roundInfo = timelineComponents.createRoundInfo(1, 8, roundConfig);
         
         expect(roundInfo).toBeDefined();
@@ -185,7 +185,7 @@ describe('Columbia Card Task', () => {
       });
 
       test('should display correct round information', () => {
-        const roundConfig: RoundConfig = { lossCards: 2, gainAmount: 15, lossAmount: 100 };
+        const roundConfig: RoundConfig = { loss_cards: 2, gain_amount: 15, loss_amount: 100 };
         const roundInfo = timelineComponents.createRoundInfo(3, 5, roundConfig);
         
         const stimulus = typeof roundInfo.stimulus === 'function' ? roundInfo.stimulus() : roundInfo.stimulus;
@@ -198,7 +198,7 @@ describe('Columbia Card Task', () => {
 
     describe('createCardGame', () => {
       test('should create card game component', () => {
-        const roundConfig: RoundConfig = { lossCards: 1, gainAmount: 10, lossAmount: 250 };
+        const roundConfig: RoundConfig = { loss_cards: 1, gain_amount: 10, loss_amount: 250 };
         const cardGame = timelineComponents.createCardGame(mockJsPsych, 1, roundConfig, 16, 4);
         
         expect(cardGame).toBeDefined();
@@ -208,7 +208,7 @@ describe('Columbia Card Task', () => {
       });
 
       test('should generate correct number of cards', () => {
-        const roundConfig: RoundConfig = { lossCards: 1, gainAmount: 10, lossAmount: 250 };
+        const roundConfig: RoundConfig = { loss_cards: 1, gain_amount: 10, loss_amount: 250 };
         const cardGame = timelineComponents.createCardGame(mockJsPsych, 1, roundConfig, 12, 3);
         
         const stimulus = typeof cardGame.stimulus === 'function' ? cardGame.stimulus() : cardGame.stimulus;
@@ -268,7 +268,7 @@ describe('Columbia Card Task', () => {
           return { innerHTML: '', textContent: '' };
         });
 
-        const roundConfig: RoundConfig = { lossCards: 1, gainAmount: 10, lossAmount: 250 };
+        const roundConfig: RoundConfig = { loss_cards: 1, gain_amount: 10, loss_amount: 250 };
         utils.setupRound(mockJsPsych, roundConfig, 1, 4, 16);
 
         expect(document.querySelectorAll).toHaveBeenCalledWith('.card');
@@ -279,7 +279,7 @@ describe('Columbia Card Task', () => {
 
     describe('endRound', () => {
       test('should end round and finish trial', () => {
-        const roundConfig: RoundConfig = { lossCards: 1, gainAmount: 10, lossAmount: 250 };
+        const roundConfig: RoundConfig = { loss_cards: 1, gain_amount: 10, loss_amount: 250 };
         
         // Setup a round first
         const mockCard = {
@@ -300,7 +300,7 @@ describe('Columbia Card Task', () => {
       });
 
       test('should not end round if no round data exists', () => {
-        const roundConfig: RoundConfig = { lossCards: 1, gainAmount: 10, lossAmount: 250 };
+        const roundConfig: RoundConfig = { loss_cards: 1, gain_amount: 10, loss_amount: 250 };
         utils.resetState(); // Ensure no round data
         
         utils.endRound(mockJsPsych, roundConfig, 1, true);
@@ -331,9 +331,9 @@ describe('Columbia Card Task', () => {
       });
 
       // Mock Math.random to return position that's NOT a loss card
-      (Math.random as jest.Mock).mockReturnValue(0.9); // This should make position > lossCards
+      (Math.random as jest.Mock).mockReturnValue(0.9); // This should make position > loss_cards
 
-      const roundConfig: RoundConfig = { lossCards: 1, gainAmount: 10, lossAmount: 250 };
+      const roundConfig: RoundConfig = { loss_cards: 1, gain_amount: 10, loss_amount: 250 };
       utils.setupRound(mockJsPsych, roundConfig, 1, 4, 16);
 
       // Simulate card click
@@ -368,7 +368,7 @@ describe('Columbia Card Task', () => {
       // Mock Math.random to return position 0 (will be a loss card)
       (Math.random as jest.Mock).mockReturnValue(0.1);
 
-      const roundConfig: RoundConfig = { lossCards: 1, gainAmount: 10, lossAmount: 250 };
+      const roundConfig: RoundConfig = { loss_cards: 1, gain_amount: 10, loss_amount: 250 };
       utils.setupRound(mockJsPsych, roundConfig, 1, 4, 16);
 
       // Simulate card click
@@ -399,7 +399,7 @@ describe('Columbia Card Task', () => {
         return { innerHTML: '', textContent: '' };
       });
 
-      const roundConfig: RoundConfig = { lossCards: 1, gainAmount: 10, lossAmount: 250 };
+      const roundConfig: RoundConfig = { loss_cards: 1, gain_amount: 10, loss_amount: 250 };
       utils.setupRound(mockJsPsych, roundConfig, 1, 4, 16);
 
       // Simulate stop button click
@@ -415,36 +415,36 @@ describe('Columbia Card Task', () => {
 
   describe('Type Exports', () => {
     test('should export RoundConfig type', () => {
-      const config: RoundConfig = { lossCards: 1, gainAmount: 10, lossAmount: 250 };
-      expect(config.lossCards).toBe(1);
-      expect(config.gainAmount).toBe(10);
-      expect(config.lossAmount).toBe(250);
+      const config: RoundConfig = { loss_cards: 1, gain_amount: 10, loss_amount: 250 };
+      expect(config.loss_cards).toBe(1);
+      expect(config.gain_amount).toBe(10);
+      expect(config.loss_amount).toBe(250);
     });
 
-    test('should export RoundData type', () => {
-      const data: RoundData = {
+    test('should export round_data type', () => {
+      const data: round_data = {
         score: 100,
         cards: 5,
         ended: false,
-        startTime: 1000000,
+        start_time: 1000000,
         selections: [{ card: 0, time: 500 }]
       };
       expect(data.score).toBe(100);
       expect(data.cards).toBe(5);
       expect(data.ended).toBe(false);
-      expect(data.startTime).toBe(1000000);
+      expect(data.start_time).toBe(1000000);
       expect(data.selections).toHaveLength(1);
     });
 
     test('should export GameState type', () => {
       const state: GameState = {
-        totalScore: 200,
-        roundData: null,
-        roundsCompleted: 3
+        total_score: 200,
+        round_data: null,
+        rounds_completed: 3
       };
-      expect(state.totalScore).toBe(200);
-      expect(state.roundData).toBeNull();
-      expect(state.roundsCompleted).toBe(3);
+      expect(state.total_score).toBe(200);
+      expect(state.round_data).toBeNull();
+      expect(state.rounds_completed).toBe(3);
     });
   });
 
@@ -456,7 +456,7 @@ describe('Columbia Card Task', () => {
     });
 
     test('should handle single round', () => {
-      const singleRound: RoundConfig[] = [{ lossCards: 1, gainAmount: 10, lossAmount: 250 }];
+      const singleRound: RoundConfig[] = [{ loss_cards: 1, gain_amount: 10, loss_amount: 250 }];
       const timeline = createTimeline(mockJsPsych, { rounds: singleRound });
       expect(timeline).toBeDefined();
       expect(Array.isArray(timeline)).toBe(true);
@@ -473,7 +473,7 @@ describe('Columbia Card Task', () => {
       (document.querySelectorAll as jest.Mock).mockReturnValue([mockCard]);
       (document.getElementById as jest.Mock).mockReturnValue({ addEventListener: jest.fn(), innerHTML: '', textContent: '' });
 
-      const roundConfig: RoundConfig = { lossCards: 1, gainAmount: 10, lossAmount: 250 };
+      const roundConfig: RoundConfig = { loss_cards: 1, gain_amount: 10, loss_amount: 250 };
       utils.setupRound(mockJsPsych, roundConfig, 1, 4, 16);
 
       // End the round first
@@ -502,7 +502,7 @@ describe('Columbia Card Task', () => {
       (document.querySelectorAll as jest.Mock).mockReturnValue([mockCard]);
       (document.getElementById as jest.Mock).mockReturnValue({ addEventListener: jest.fn(), innerHTML: '', textContent: '' });
 
-      const roundConfig: RoundConfig = { lossCards: 1, gainAmount: 10, lossAmount: 250 };
+      const roundConfig: RoundConfig = { loss_cards: 1, gain_amount: 10, loss_amount: 250 };
       utils.setupRound(mockJsPsych, roundConfig, 1, 4, 16);
 
       // Try to click already revealed card
