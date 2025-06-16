@@ -54,11 +54,11 @@ function resetState() {
     };
 }
 
-function setupRound(jsPsych: JsPsych, cfg: RoundConfig, roundNum: number, cols: number, numCards: number) {
+function setupRound(jsPsych: JsPsych, cfg: RoundConfig, round_num: number, cols: number, n_cards: number) {
     // Create card layout
     const lossPositions: number[] = [];
     while (lossPositions.length < cfg.lossCards) {
-        const pos = Math.floor(Math.random() * numCards);
+        const pos = Math.floor(Math.random() * n_cards);
         if (!lossPositions.includes(pos)) lossPositions.push(pos);
     }
     
@@ -88,7 +88,7 @@ function setupRound(jsPsych: JsPsych, cfg: RoundConfig, roundNum: number, cols: 
                 if (messageEl) {
                     messageEl.innerHTML = '<b style="color:#EF4444">Loss card! Round ended.</b>';
                 }
-                setTimeout(() => endRound(jsPsych, cfg, roundNum, false), 2000);
+                setTimeout(() => endRound(jsPsych, cfg, round_num, false), 2000);
             } else {
                 this.className = 'card card-gain';
                 this.textContent = `+${cfg.gainAmount}`;
@@ -98,13 +98,13 @@ function setupRound(jsPsych: JsPsych, cfg: RoundConfig, roundNum: number, cols: 
                     scoreEl.textContent = state.roundData.score.toString();
                 }
                 
-                if (state.roundData.cards === numCards - cfg.lossCards) {
+                if (state.roundData.cards === n_cards - cfg.lossCards) {
                     state.roundData.ended = true;
                     const messageEl = document.getElementById('message');
                     if (messageEl) {
                         messageEl.innerHTML = '<b style="color:#22C55E">All gain cards found!</b>';
                     }
-                    setTimeout(() => endRound(jsPsych, cfg, roundNum, true), 2000);
+                    setTimeout(() => endRound(jsPsych, cfg, round_num, true), 2000);
                 }
             }
         });
@@ -120,13 +120,13 @@ function setupRound(jsPsych: JsPsych, cfg: RoundConfig, roundNum: number, cols: 
                 if (messageEl) {
                     messageEl.innerHTML = '<b style="color:#1E3A8A">Round stopped!</b>';
                 }
-                setTimeout(() => endRound(jsPsych, cfg, roundNum, true), 1500);
+                setTimeout(() => endRound(jsPsych, cfg, round_num, true), 1500);
             }
         });
     }
 }
 
-function endRound(jsPsych: JsPsych, cfg: RoundConfig, roundNum: number, voluntary: boolean) {
+function endRound(jsPsych: JsPsych, cfg: RoundConfig, round_num: number, voluntary: boolean) {
     if (!state.roundData) return;
     
     state.totalScore += state.roundData.score;
@@ -136,7 +136,7 @@ function endRound(jsPsych: JsPsych, cfg: RoundConfig, roundNum: number, voluntar
     if (currentTrial) {
         currentTrial.data = {
             task: 'round_complete',
-            round: roundNum,
+            round: round_num,
             ...cfg,
             cards_selected: state.roundData.cards,
             round_score: state.roundData.score,
@@ -169,12 +169,12 @@ function createInstructions() {
     return instructions;
 }
 
-function createRoundInfo(roundNum: number, totalRounds: number, roundConfig: RoundConfig) {
+function createRoundInfo(round_num: number, totalRounds: number, roundConfig: RoundConfig) {
     const roundInfo = {
         type: jsPsychHtmlButtonResponse,
         stimulus: () => {
             return `<div class="round-info">
-                <h2>Round ${roundNum} of ${totalRounds}</h2>
+                <h2>Round ${round_num} of ${totalRounds}</h2>
                 <p>Loss cards: <b style="color:#EF4444">${roundConfig.lossCards}</b></p>
                 <p>Loss penalty: <b style="color:#EF4444">-${roundConfig.lossAmount}</b></p>
                 <p>Gain per card: <b style="color:#22C55E">+${roundConfig.gainAmount}</b></p>
@@ -189,21 +189,21 @@ function createRoundInfo(roundNum: number, totalRounds: number, roundConfig: Rou
 
 function createCardGame(
     jsPsych: JsPsych, 
-    roundNum: number, 
+    round_num: number, 
     roundConfig: RoundConfig, 
-    numCards: number, 
+    n_cards: number, 
     cols: number
 ) {
     const cardGame = {
         type: jsPsychHtmlKeyboardResponse,
         stimulus: function() {
-            const cards = Array.from({length: numCards}, (_, i) => 
+            const cards = Array.from({length: n_cards}, (_, i) => 
                 `<div class="card card-back" id="card-${i}">?</div>`
             ).join('');
             
             return `<style>.card-grid { grid-template-columns: repeat(${cols}, 1fr) !important; }</style>
                 <div class="game-info">
-                    <h3>Round ${roundNum}</h3>
+                    <h3>Round ${round_num}</h3>
                     <p>Score: <span id="round-score">0</span> | Total: ${state.totalScore}</p>
                 </div>
                 <div class="card-grid">
@@ -216,7 +216,7 @@ function createCardGame(
         },
         choices: "NO_KEYS",
         on_load: function() {
-            setupRound(jsPsych, roundConfig, roundNum, cols, numCards);
+            setupRound(jsPsych, roundConfig, round_num, cols, n_cards);
         }
     };
     
@@ -252,17 +252,17 @@ function createResults(jsPsych: JsPsych) {
 export function createTimeline(
     jsPsych: JsPsych,
     {
-        numCards = default_n_cards,
+        n_cards = default_n_cards,
         cols = default_cols,
         rounds = default_rounds,
-        showInstructions = true,
-        showResults = true
+        show_instructions = true,
+        show_results = true
     }: {
-        numCards?: number,
+        n_cards?: number,
         cols?: number,
         rounds?: RoundConfig[],
-        showInstructions?: boolean,
-        showResults?: boolean
+        show_instructions?: boolean,
+        show_results?: boolean
     } = {}
 ) {
     // Reset state for new timeline
@@ -271,23 +271,23 @@ export function createTimeline(
     const timeline: any[] = [];
     
     // Add instructions if requested
-    if (showInstructions) {
+    if (show_instructions) {
         timeline.push(createInstructions());
     }
     
     // Add rounds
     rounds.forEach((roundConfig, idx) => {
-        const roundNum = idx + 1;
+        const round_num = idx + 1;
         
         // Round info
-        timeline.push(createRoundInfo(roundNum, rounds.length, roundConfig));
+        timeline.push(createRoundInfo(round_num, rounds.length, roundConfig));
         
         // Card game
-        timeline.push(createCardGame(jsPsych, roundNum, roundConfig, numCards, cols));
+        timeline.push(createCardGame(jsPsych, round_num, roundConfig, n_cards, cols));
     });
     
     // Add results if requested
-    if (showResults) {
+    if (show_results) {
         timeline.push(createResults(jsPsych));
     }
     

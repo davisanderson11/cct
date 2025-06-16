@@ -120,11 +120,11 @@ describe('Columbia Card Task', () => {
       ];
 
       const timeline = createTimeline(mockJsPsych, {
-        numCards: 20,
+        n_cards: 20,
         cols: 5,
         rounds: customRounds,
-        showInstructions: false,
-        showResults: false
+        show_instructions: false,
+        show_results: false
       });
 
       expect(timeline).toBeDefined();
@@ -132,7 +132,7 @@ describe('Columbia Card Task', () => {
     });
 
     test('should include instructions when showInstructions is true', () => {
-      const timeline = createTimeline(mockJsPsych, { showInstructions: true });
+      const timeline = createTimeline(mockJsPsych, { show_instructions: true });
       
       // Should have instructions as first element
       expect(timeline[0]).toBeDefined();
@@ -140,14 +140,14 @@ describe('Columbia Card Task', () => {
     });
 
     test('should exclude instructions when showInstructions is false', () => {
-      const timeline = createTimeline(mockJsPsych, { showInstructions: false });
+      const timeline = createTimeline(mockJsPsych, { show_instructions: false });
       
       // First element should not be instructions
       expect(timeline[0].pages).toBeUndefined();
     });
 
     test('should include results when showResults is true', () => {
-      const timeline = createTimeline(mockJsPsych, { showResults: true });
+      const timeline = createTimeline(mockJsPsych, { show_results: true });
       
       // Last element should be results
       const lastElement = timeline[timeline.length - 1];
