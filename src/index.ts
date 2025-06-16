@@ -163,7 +163,8 @@ function createInstructions() {
             <ul><li>Number of loss cards</li><li>Points per gain card</li><li>Loss penalty</li></ul>
             <p>Use this info to decide your risk!</p>`
         ],
-        show_clickable_nav: true
+        show_clickable_nav: true,
+        allow_backward: false
     };
     
     return instructions;

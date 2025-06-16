@@ -3,40 +3,41 @@ import jsPsychHtmlKeyboardResponse from '@jspsych/plugin-html-keyboard-response'
 import jsPsychHtmlButtonResponse from '@jspsych/plugin-html-button-response';
 import jsPsychInstructions from '@jspsych/plugin-instructions';
 
-interface RoundConfig {
-    lossCards: number;
-    gainAmount: number;
-    lossAmount: number;
+interface round_config {
+    loss_cards: number;
+    gain_amount: number;
+    loss_amount: number;
 }
-interface RoundData {
+interface round_data {
     score: number;
     cards: number;
     ended: boolean;
-    startTime: number;
+    start_time: number;
     selections: Array<{
         card: number;
         time: number;
     }>;
 }
 interface GameState {
-    totalScore: number;
-    roundData: RoundData | null;
-    roundsCompleted: number;
+    total_score: number;
+    round_data: round_data | null;
+    rounds_completed: number;
 }
 declare function resetState(): void;
-declare function setupRound(jsPsych: JsPsych, cfg: RoundConfig, roundNum: number, gridCols: number, numCards: number): void;
-declare function endRound(jsPsych: JsPsych, cfg: RoundConfig, roundNum: number, voluntary: boolean): void;
+declare function setupRound(jsPsych: JsPsych, cfg: round_config, round_num: number, cols: number, n_cards: number): void;
+declare function endRound(jsPsych: JsPsych, cfg: round_config, round_num: number, voluntary: boolean): void;
 declare function createInstructions(): {
     type: typeof jsPsychInstructions;
     pages: string[];
     show_clickable_nav: boolean;
+    allow_backward: boolean;
 };
-declare function createRoundInfo(roundNum: number, totalRounds: number, roundConfig: RoundConfig): {
+declare function createRoundInfo(round_num: number, totalRounds: number, round_config: round_config): {
     type: typeof jsPsychHtmlButtonResponse;
     stimulus: () => string;
     choices: string[];
 };
-declare function createCardGame(jsPsych: JsPsych, roundNum: number, roundConfig: RoundConfig, numCards: number, gridCols: number): {
+declare function createCardGame(jsPsych: JsPsych, round_num: number, round_config: round_config, n_cards: number, cols: number): {
     type: typeof jsPsychHtmlKeyboardResponse;
     stimulus: () => string;
     choices: string;
@@ -47,12 +48,12 @@ declare function createResults(jsPsych: JsPsych): {
     stimulus: () => string;
     choices: string[];
 };
-declare function createTimeline(jsPsych: JsPsych, { numCards, gridCols, rounds, showInstructions, showResults }?: {
-    numCards?: number;
-    gridCols?: number;
-    rounds?: RoundConfig[];
-    showInstructions?: boolean;
-    showResults?: boolean;
+declare function createTimeline(jsPsych: JsPsych, { n_cards, cols, rounds, show_instructions, show_results }?: {
+    n_cards?: number;
+    cols?: number;
+    rounds?: round_config[];
+    show_instructions?: boolean;
+    show_results?: boolean;
 }): any[];
 declare const timelineComponents: {
     createInstructions: typeof createInstructions;
@@ -66,4 +67,4 @@ declare const utils: {
     endRound: typeof endRound;
 };
 
-export { GameState, RoundConfig, RoundData, createTimeline, timelineComponents, utils };
+export { GameState, createTimeline, round_config, round_data, timelineComponents, utils };
