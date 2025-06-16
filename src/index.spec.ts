@@ -177,18 +177,18 @@ describe('Columbia Card Task', () => {
     describe('createRoundInfo', () => {
       test('should create round info component', () => {
         const roundConfig: RoundConfig = { loss_cards: 1, gain_amount: 10, loss_amount: 250 };
-        const roundInfo = timelineComponents.createRoundInfo(1, 8, roundConfig);
+        const round_info = timelineComponents.createRoundInfo(1, 8, roundConfig);
         
-        expect(roundInfo).toBeDefined();
-        expect(roundInfo.stimulus).toBeDefined();
-        expect(roundInfo.choices).toEqual(['Start']);
+        expect(round_info).toBeDefined();
+        expect(round_info.stimulus).toBeDefined();
+        expect(round_info.choices).toEqual(['Start']);
       });
 
       test('should display correct round information', () => {
         const roundConfig: RoundConfig = { loss_cards: 2, gain_amount: 15, loss_amount: 100 };
-        const roundInfo = timelineComponents.createRoundInfo(3, 5, roundConfig);
+        const round_info = timelineComponents.createRoundInfo(3, 5, roundConfig);
         
-        const stimulus = typeof roundInfo.stimulus === 'function' ? roundInfo.stimulus() : roundInfo.stimulus;
+        const stimulus = typeof round_info.stimulus === 'function' ? round_info.stimulus() : round_info.stimulus;
         expect(stimulus).toContain('Round 3 of 5');
         expect(stimulus).toContain('2');
         expect(stimulus).toContain('15');
