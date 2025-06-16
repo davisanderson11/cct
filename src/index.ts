@@ -18,7 +18,7 @@ const default_rounds = [
 ];
 
 /* Types */
-interface RoundConfig {
+interface round_config {
     loss_cards: number;
     gain_amount: number;
     loss_amount: number;
@@ -54,7 +54,7 @@ function resetState() {
     };
 }
 
-function setupRound(jsPsych: JsPsych, cfg: RoundConfig, round_num: number, cols: number, n_cards: number) {
+function setupRound(jsPsych: JsPsych, cfg: round_config, round_num: number, cols: number, n_cards: number) {
     // Create card layout
     const lossPositions: number[] = [];
     while (lossPositions.length < cfg.loss_cards) {
@@ -126,7 +126,7 @@ function setupRound(jsPsych: JsPsych, cfg: RoundConfig, round_num: number, cols:
     }
 }
 
-function endRound(jsPsych: JsPsych, cfg: RoundConfig, round_num: number, voluntary: boolean) {
+function endRound(jsPsych: JsPsych, cfg: round_config, round_num: number, voluntary: boolean) {
     if (!state.round_data) return;
     
     state.total_score += state.round_data.score;
@@ -169,15 +169,15 @@ function createInstructions() {
     return instructions;
 }
 
-function createRoundInfo(round_num: number, totalRounds: number, roundConfig: RoundConfig) {
+function createRoundInfo(round_num: number, totalRounds: number, round_config: round_config) {
     const round_info = {
         type: jsPsychHtmlButtonResponse,
         stimulus: () => {
             return `<div class="round-info">
                 <h2>Round ${round_num} of ${totalRounds}</h2>
-                <p>Loss cards: <b style="color:#EF4444">${roundConfig.loss_cards}</b></p>
-                <p>Loss penalty: <b style="color:#EF4444">-${roundConfig.loss_amount}</b></p>
-                <p>Gain per card: <b style="color:#22C55E">+${roundConfig.gain_amount}</b></p>
+                <p>Loss cards: <b style="color:#EF4444">${round_config.loss_cards}</b></p>
+                <p>Loss penalty: <b style="color:#EF4444">-${round_config.loss_amount}</b></p>
+                <p>Gain per card: <b style="color:#22C55E">+${round_config.gain_amount}</b></p>
                 <p>Total score: <span class="score-display">${state.total_score}</span></p>
             </div>`;
         },
@@ -190,7 +190,7 @@ function createRoundInfo(round_num: number, totalRounds: number, roundConfig: Ro
 function createCardGame(
     jsPsych: JsPsych, 
     round_num: number, 
-    roundConfig: RoundConfig, 
+    round_config: round_config, 
     n_cards: number, 
     cols: number
 ) {
@@ -216,7 +216,7 @@ function createCardGame(
         },
         choices: "NO_KEYS",
         on_load: function() {
-            setupRound(jsPsych, roundConfig, round_num, cols, n_cards);
+            setupRound(jsPsych, round_config, round_num, cols, n_cards);
         }
     };
     
@@ -228,18 +228,18 @@ function createResults(jsPsych: JsPsych) {
         type: jsPsychHtmlButtonResponse,
         stimulus: function() {
             const data = jsPsych.data.get().filter({task: 'round_complete'});
-            const avgCards = data.count() > 0 ? data.select('cards_selected').mean() : 0;
+            const avg_cards = data.count() > 0 ? data.select('cards_selected').mean() : 0;
             
-            let finalScore = 0;
+            let final_score = 0;
             if (data.count() > 0) {
                 const scores = data.select('total_score').values;
-                finalScore = scores[scores.length - 1];
+                final_score = scores[scores.length - 1];
             }
             
             return `<div class="round-info">
                 <h2>Task Complete!</h2>
-                <p>Final Score: <span class="score-display">${finalScore}</span></p>
-                <p>Average cards selected: ${avgCards.toFixed(1)}</p>
+                <p>Final Score: <span class="score-display">${final_score}</span></p>
+                <p>Average cards selected: ${avg_cards.toFixed(1)}</p>
             </div>`;
         },
         choices: ['Continue']
@@ -260,7 +260,7 @@ export function createTimeline(
     }: {
         n_cards?: number,
         cols?: number,
-        rounds?: RoundConfig[],
+        rounds?: round_config[],
         show_instructions?: boolean,
         show_results?: boolean
     } = {}
@@ -276,14 +276,14 @@ export function createTimeline(
     }
     
     // Add rounds
-    rounds.forEach((roundConfig, idx) => {
+    rounds.forEach((round_config, idx) => {
         const round_num = idx + 1;
         
         // Round info
-        timeline.push(createRoundInfo(round_num, rounds.length, roundConfig));
+        timeline.push(createRoundInfo(round_num, rounds.length, round_config));
         
         // Card game
-        timeline.push(createCardGame(jsPsych, round_num, roundConfig, n_cards, cols));
+        timeline.push(createCardGame(jsPsych, round_num, round_config, n_cards, cols));
     });
     
     // Add results if requested
@@ -310,4 +310,4 @@ export const utils = {
 };
 
 /* Export types */
-export type { RoundConfig, round_data, GameState };
+export type { round_config, round_data, GameState };
